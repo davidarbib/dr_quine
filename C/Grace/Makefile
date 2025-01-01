@@ -55,6 +55,7 @@ clean :
 fclean : clean
 	@echo $(MAGENTA) "Total cleaning..." $(RESET)
 	@rm -f $(NAME)
+	@rm -f Grace_kid.c
 	@echo $(MAGENTA) "...done" $(RESET)
 
 re : fclean all
