@@ -28,7 +28,7 @@ char *tape[] = {
 "#define SULLYSIZE 6",
 "#define NAMESIZE 15",
 "#define INITSIZE 15",
-"int i = 5;",
+"int i = ;",
 "char *tape[] = {",
 "};",
 "int main(){",
@@ -39,7 +39,9 @@ int main(){
     char lf[1] = {74};
     int a = i - 1;
     char buf[SULLYSIZE + 3];
+    char digit[1];
 
+    digit[0] = DIGIT(a);
     FILE *handler = fopen(buf, tape[0]);if(!handler){return 1;}
     bzero(buf, SULLYSIZE + 3);
     strcpy(buf, tape[1]);
@@ -51,4 +53,5 @@ int main(){
     }
     fwrite(lf, 1, 1, handler);
     fprintf(handler, tape[4], tape[16]);
+    fwrite(lf, 1, 1, handler);
 }
