@@ -16,8 +16,9 @@ char *tape[] = {
 "Sully_",
 ".c",
 "clang -Wall -Werror -Wextra",
-"%s",
-"%c%s%c",
+"-o",
+"%s%c",
+"%c%s%c%c%c",
 "#include <stdio.h>",
 "#include <string.h>",
 "#include <strings.h>",
@@ -32,26 +33,86 @@ char *tape[] = {
 "char *tape[] = {",
 "};",
 "int main(){",
-"}"
+"    char lf[1] = {10};",
+"    int a = i - 1;",
+"    char namebuf[SULLYSIZE + 3];",
+"    char digit[1];",
+"    digit[0] = DIGIT(a);",
+"    FILE *handler = fopen(namebuf, tape[0]);if(!handler){return 1;}",
+"    bzero(namebuf, SULLYSIZE + 3);",
+"    strcpy(namebuf, tape[1]);",
+"    namebuf[SULLYSIZE] = DIGIT(a);",
+"    strcat(namebuf, tape[2]);",
+"    for (int i = 7; i < 12; i++) {",
+"        fprintf(handler, tape[5], tape[i], 10);",
+"    }",
+"    fwrite(lf, 1, 1, handler);",
+"    fprintf(handler, tape[5], tape[17], 10);",
+"    fwrite(lf, 1, 1, handler);",
+"    fprintf(handler, tape[5], tape[18], 10);",
+"    for (int i = 0; i < 24; i++) {",
+"        fprintf(handler, tape[6], 34, tape[i], 34, 44, 10);",
+"    }",
+"    fprintf(handler, tape[5], tape[19], 10);",
+"    if (fclose(handler)) {return 1;}",
+"    char cmdbuf[CMDSIZE];",
+"    bzero(cmdbuf, CMDSIZE);",
+"    strcpy(cmdbuf, tape[3]);",
+"    strcat(cmdbuf, tape[22]);",
+"    strcat(cmdbuf, namebuf);",
+"    strcat(cmdbuf, tape[2]);",
+"    strcat(cmdbuf, tape[22]);",
+"    strcat(cmdbuf, tape[4]);",
+"    strcat(cmdbuf, tape[22]);",
+"    strcat(cmdbuf, namebuf);",
+"    if (system(cmdbuf)) {return 1;} ",
+"    bzero(cmdbuf, CMDSIZE);",
+"    strcpy(cmdbuf, tape[23]);",
+"    strcat(cmdbuf, namebuf);",
+"    if (system(cmdbuf)) {return 1;} ",
+"    return 0;",
+"}",
+" ",
+"./",
 };
 
 int main(){
-    char lf[1] = {74};
+    char lf[1] = {10};
     int a = i - 1;
-    char buf[SULLYSIZE + 3];
+    char namebuf[SULLYSIZE + 3];
     char digit[1];
-
     digit[0] = DIGIT(a);
-    FILE *handler = fopen(buf, tape[0]);if(!handler){return 1;}
-    bzero(buf, SULLYSIZE + 3);
-    strcpy(buf, tape[1]);
-    buf[SULLYSIZE] = DIGIT(a);
-    strcat(buf, tape[2]);
-    for (int i = 6; i < 11; i++){
-        fprintf(handler, tape[4], tape[i]);
-        fwrite(lf, 1, 1, handler);
+    bzero(namebuf, SULLYSIZE + 3);
+    strcpy(namebuf, tape[1]);
+    namebuf[SULLYSIZE] = DIGIT(a);
+    strcat(namebuf, tape[2]);
+    FILE *handler = fopen(namebuf, tape[0]);if(!handler){return 1;}
+    for (int i = 7; i < 12; i++) {
+        fprintf(handler, tape[5], tape[i], 10);
     }
     fwrite(lf, 1, 1, handler);
-    fprintf(handler, tape[4], tape[16]);
+    fprintf(handler, tape[5], tape[17], 10);
     fwrite(lf, 1, 1, handler);
+    fprintf(handler, tape[5], tape[18], 10);
+    for (int i = 0; i < 51; i++) {
+        fprintf(handler, tape[6], 34, tape[i], 34, 44, 10);
+    }
+    fprintf(handler, tape[5], tape[19], 10);
+    if (fclose(handler)) {return 1;}
+    char cmdbuf[CMDSIZE];
+    bzero(cmdbuf, CMDSIZE);
+    strcpy(cmdbuf, tape[3]);
+    strcat(cmdbuf, tape[22]);
+    strcat(cmdbuf, namebuf);
+    strcat(cmdbuf, tape[2]);
+    strcat(cmdbuf, tape[22]);
+    strcat(cmdbuf, tape[4]);
+    strcat(cmdbuf, tape[22]);
+    strcat(cmdbuf, namebuf);
+    if (system(cmdbuf)) {return 1;} 
+    bzero(cmdbuf, CMDSIZE);
+    strcpy(cmdbuf, tape[23]);
+    strcat(cmdbuf, namebuf);
+    if (system(cmdbuf)) {return 1;} 
+    return 0;
 }
