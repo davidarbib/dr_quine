@@ -38,22 +38,26 @@ char *tape[] = {
 "    char namebuf[SULLYSIZE + 3];",
 "    char digit[1];",
 "    digit[0] = DIGIT(a);",
-"    FILE *handler = fopen(namebuf, tape[0]);if(!handler){return 1;}",
 "    bzero(namebuf, SULLYSIZE + 3);",
 "    strcpy(namebuf, tape[1]);",
 "    namebuf[SULLYSIZE] = DIGIT(a);",
 "    strcat(namebuf, tape[2]);",
-"    for (int i = 7; i < 12; i++) {",
+"    FILE *handler = fopen(namebuf, tape[0]);if(!handler){return 1;}",
+"    for (int i = 7; i < 17; i++) {",
 "        fprintf(handler, tape[5], tape[i], 10);",
 "    }",
 "    fwrite(lf, 1, 1, handler);",
 "    fprintf(handler, tape[5], tape[17], 10);",
 "    fwrite(lf, 1, 1, handler);",
 "    fprintf(handler, tape[5], tape[18], 10);",
-"    for (int i = 0; i < 24; i++) {",
+"    for (int i = 0; i < 66; i++) {",
 "        fprintf(handler, tape[6], 34, tape[i], 34, 44, 10);",
 "    }",
 "    fprintf(handler, tape[5], tape[19], 10);",
+"    fwrite(lf, 1, 1, handler);",
+"    for (int i = 20; i < 64; i++) {",
+"        fprintf(handler, tape[5], tape[i], 10);",
+"    }",
 "    if (fclose(handler)) {return 1;}",
 "    char cmdbuf[CMDSIZE];",
 "    bzero(cmdbuf, CMDSIZE);",
@@ -65,11 +69,11 @@ char *tape[] = {
 "    strcat(cmdbuf, tape[4]);",
 "    strcat(cmdbuf, tape[22]);",
 "    strcat(cmdbuf, namebuf);",
-"    if (system(cmdbuf)) {return 1;} ",
+"    if (system(cmdbuf)) {return 1;}",
 "    bzero(cmdbuf, CMDSIZE);",
 "    strcpy(cmdbuf, tape[23]);",
 "    strcat(cmdbuf, namebuf);",
-"    if (system(cmdbuf)) {return 1;} ",
+"    if (system(cmdbuf)) {return 1;}",
 "    return 0;",
 "}",
 " ",
@@ -87,17 +91,21 @@ int main(){
     namebuf[SULLYSIZE] = DIGIT(a);
     strcat(namebuf, tape[2]);
     FILE *handler = fopen(namebuf, tape[0]);if(!handler){return 1;}
-    for (int i = 7; i < 12; i++) {
+    for (int i = 7; i < 17; i++) {
         fprintf(handler, tape[5], tape[i], 10);
     }
     fwrite(lf, 1, 1, handler);
     fprintf(handler, tape[5], tape[17], 10);
     fwrite(lf, 1, 1, handler);
     fprintf(handler, tape[5], tape[18], 10);
-    for (int i = 0; i < 51; i++) {
+    for (int i = 0; i < 66; i++) {
         fprintf(handler, tape[6], 34, tape[i], 34, 44, 10);
     }
     fprintf(handler, tape[5], tape[19], 10);
+    fwrite(lf, 1, 1, handler);
+    for (int i = 20; i < 64; i++) {
+        fprintf(handler, tape[5], tape[i], 10);
+    }
     if (fclose(handler)) {return 1;}
     char cmdbuf[CMDSIZE];
     bzero(cmdbuf, CMDSIZE);
@@ -109,10 +117,10 @@ int main(){
     strcat(cmdbuf, tape[4]);
     strcat(cmdbuf, tape[22]);
     strcat(cmdbuf, namebuf);
-    if (system(cmdbuf)) {return 1;} 
+    if (system(cmdbuf)) {return 1;}
     bzero(cmdbuf, CMDSIZE);
     strcpy(cmdbuf, tape[23]);
     strcat(cmdbuf, namebuf);
-    if (system(cmdbuf)) {return 1;} 
+    if (system(cmdbuf)) {return 1;}
     return 0;
 }
