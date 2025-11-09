@@ -42,20 +42,20 @@ char *tape[] = {
 "    namebuf[SULLYSIZE] = DIGIT(a);",
 "    strcat(namebuf, tape[2]);",
 "    FILE *handler = fopen(namebuf, tape[0]);if(!handler){return 1;}",
-"    for (int i = 7; i < 17; i++) {",
-"        fprintf(handler, tape[5], tape[i], 10);",
+"    for (int j = 7; j < 17; j++) {",
+"        fprintf(handler, tape[5], tape[j], 10);",
 "    }",
 "    fwrite(lf, 1, 1, handler);",
 "    fprintf(handler, tape[66], tape[17], DIGIT(a), 59, 10);",
 "    fwrite(lf, 1, 1, handler);",
 "    fprintf(handler, tape[5], tape[18], 10);",
-"    for (int i = 0; i < 68; i++) {",
-"        fprintf(handler, tape[6], 34, tape[i], 34, 44, 10);",
+"    for (int j = 0; j < 68; j++) {",
+"        fprintf(handler, tape[6], 34, tape[j], 34, 44, 10);",
 "    }",
 "    fprintf(handler, tape[5], tape[19], 10);",
 "    fwrite(lf, 1, 1, handler);",
-"    for (int i = 20; i < 64; i++) {",
-"        fprintf(handler, tape[5], tape[i], 10);",
+"    for (int j = 20; j < 64; j++) {",
+"        fprintf(handler, tape[5], tape[j], 10);",
 "    }",
 "    if (fclose(handler)) {return 1;}",
 "    char cmdbuf[CMDSIZE];",
@@ -92,20 +92,20 @@ int main(){
     namebuf[SULLYSIZE] = DIGIT(a);
     strcat(namebuf, tape[2]);
     FILE *handler = fopen(namebuf, tape[0]);if(!handler){return 1;}
-    for (int i = 7; i < 17; i++) {
-        fprintf(handler, tape[5], tape[i], 10);
+    for (int j = 7; j < 17; j++) {
+        fprintf(handler, tape[5], tape[j], 10);
     }
     fwrite(lf, 1, 1, handler);
     fprintf(handler, tape[66], tape[17], DIGIT(a), 59, 10);
     fwrite(lf, 1, 1, handler);
     fprintf(handler, tape[5], tape[18], 10);
-    for (int i = 0; i < 68; i++) {
-        fprintf(handler, tape[6], 34, tape[i], 34, 44, 10);
+    for (int j = 0; j < 68; j++) {
+        fprintf(handler, tape[6], 34, tape[j], 34, 44, 10);
     }
     fprintf(handler, tape[5], tape[19], 10);
     fwrite(lf, 1, 1, handler);
-    for (int i = 20; i < 64; i++) {
-        fprintf(handler, tape[5], tape[i], 10);
+    for (int j = 20; j < 64; j++) {
+        fprintf(handler, tape[5], tape[j], 10);
     }
     if (fclose(handler)) {return 1;}
     char cmdbuf[CMDSIZE];
