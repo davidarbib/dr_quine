@@ -1,3 +1,5 @@
+int i = 5;
+
 #include <stdio.h>
 #include <string.h>
 #include <strings.h>
@@ -9,8 +11,6 @@
 #define NAMESIZE 15
 #define INITSIZE 15
 
-int i = 5;
-
 char *tape[] = {
 "w",
 "Sully_",
@@ -19,6 +19,7 @@ char *tape[] = {
 "-o",
 "%s%c",
 "%c%s%c%c%c",
+"int i = ",
 "#include <stdio.h>",
 "#include <string.h>",
 "#include <strings.h>",
@@ -29,11 +30,10 @@ char *tape[] = {
 "#define SULLYSIZE 6",
 "#define NAMESIZE 15",
 "#define INITSIZE 15",
-"int i = ",
 "char *tape[] = {",
 "};",
 "int main(){",
-"    if (i < 0) {return 0;}",
+"    if (i == 0) {return 0;}",
 "    char lf[1] = {10};",
 "    int a = i - 1;",
 "    int a = i;",
@@ -43,27 +43,27 @@ char *tape[] = {
 "    namebuf[SULLYSIZE] = DIGIT(a);",
 "    strcat(namebuf, tape[2]);",
 "    FILE *handler = fopen(namebuf, tape[0]);if(!handler){return 1;}",
-"    for (int j = 7; j < 17; j++) {",
+"    fprintf(handler, tape[75], tape[7], DIGIT(a), 59, 10);",
+"    fwrite(lf, 1, 1, handler);",
+"    for (int j = 8; j < 18; j++) {",
 "        fprintf(handler, tape[5], tape[j], 10);",
 "    }",
 "    fwrite(lf, 1, 1, handler);",
-"    fprintf(handler, tape[75], tape[17], DIGIT(a), 59, 10);",
-"    fwrite(lf, 1, 1, handler);",
 "    fprintf(handler, tape[5], tape[18], 10);",
-"    for (int j = 0; j < 23; j++) {",
-"        fprintf(handler, tape[6], 34, tape[j], 34, 44, 10);",
-"    }",
-"    if (i != 1) {",
-"        fprintf(handler, tape[6], 34, tape[23], 34, 44, 10);",
-"    } else {",
-"        fprintf(handler, tape[6], 34, tape[24], 34, 44, 10);",
-"    }",
-"    for (int j = 25; j < 77; j++) {",
+"    for (int j = 0; j < 77; j++) {",
 "        fprintf(handler, tape[6], 34, tape[j], 34, 44, 10);",
 "    }",
 "    fprintf(handler, tape[5], tape[19], 10);",
 "    fwrite(lf, 1, 1, handler);",
-"    for (int j = 20; j < 73; j++) {",
+"    for (int j = 20; j < 23; j++) {",
+"        fprintf(handler, tape[5], tape[j], 10);",
+"    }",
+"    if (i != 1) {",
+"        fprintf(handler, tape[5], tape[23], 10);",
+"    } else {",
+"        fprintf(handler, tape[5], tape[24], 10);",
+"    }",
+"    for (int j = 25; j < 73; j++) {",
 "        fprintf(handler, tape[5], tape[j], 10);",
 "    }",
 "    if (fclose(handler)) {return 1;}",
@@ -101,28 +101,27 @@ int main(){
     namebuf[SULLYSIZE] = DIGIT(a);
     strcat(namebuf, tape[2]);
     FILE *handler = fopen(namebuf, tape[0]);if(!handler){return 1;}
-    for (int j = 7; j < 17; j++) {
+    fprintf(handler, tape[75], tape[7], DIGIT(a), 59, 10);
+    fwrite(lf, 1, 1, handler);
+    for (int j = 8; j < 18; j++) {
         fprintf(handler, tape[5], tape[j], 10);
     }
     fwrite(lf, 1, 1, handler);
-    fprintf(handler, tape[75], tape[17], DIGIT(a), 59, 10);
-    fwrite(lf, 1, 1, handler);
     fprintf(handler, tape[5], tape[18], 10);
-    for (int j = 0; j < 23; j++) {
+    for (int j = 0; j < 77; j++) {
         fprintf(handler, tape[6], 34, tape[j], 34, 44, 10);
+    }
+    fprintf(handler, tape[5], tape[19], 10);
+    fwrite(lf, 1, 1, handler);
+    for (int j = 20; j < 23; j++) {
+        fprintf(handler, tape[5], tape[j], 10);
     }
     if (i != 1) {
-        fprintf(handler, tape[6], 34, tape[23], 34, 44, 10);
+        fprintf(handler, tape[5], tape[23], 10);
     } else {
-        fprintf(handler, tape[6], 34, tape[24], 34, 44, 10);
+        fprintf(handler, tape[5], tape[24], 10);
     }
-    for (int j = 25; j < 77; j++) {
-        fprintf(handler, tape[6], 34, tape[j], 34, 44, 10);
-    }
-    fprintf(handler, tape[5], tape[19], 10);
-    fprintf(handler, tape[5], tape[19], 10);
-    fwrite(lf, 1, 1, handler);
-    for (int j = 20; j < 73; j++) {
+    for (int j = 25; j < 73; j++) {
         fprintf(handler, tape[5], tape[j], 10);
     }
     if (fclose(handler)) {return 1;}
